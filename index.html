@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+<script>
+
+    const address = [
+        {
+            id: 1,
+            name: '北京市',
+            children: [
+                {
+                    id: 11,
+                    name: '海淀区',
+                    children: [
+                        {
+                            id: 111,
+                            name: '中关村',
+                        }
+                    ]
+                },
+                {
+                    id: 12,
+                    name: '朝阳区',
+                },
+            ],
+        },
+        {
+            id: 2,
+            name: '河北省'
+        }
+    ]
+    // 请实现该函数
+    // 输⼊：getNameById(address, 2)，输出："河北省"
+    // 输⼊：getNameById(address, 111)，输出："中关村"
+    // 输⼊：getNameById(address, 32)，输出："" （未查找到，输出空字符串）
+    function getNameById(address, id) {
+
+        let result = '';
+// 在这⾥实现你的代码
+        for(let i = 0; i<address.length; i++) {
+            const a = address[i];
+            if(id === a.id) {
+                result = a.name
+                break
+            }else {
+                if(a.children instanceof Array && a.children.length !== 0 ) {
+                   result =  getNameById(a.children, id)
+                }
+            }
+        }
+        return result
+    }
+
+    console.log(getNameById(address, 2));
+    console.log(getNameById(address, 111));
+    console.log(getNameById(address, 32));
+
+</script>
+</body>
+</html>
